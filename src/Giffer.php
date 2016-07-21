@@ -2,8 +2,8 @@
 
 namespace Andrewhood125;
 
-use Exceptions\VideoNotFoundExeption;
 use Symfony\Component\Process\Process;
+use Andrewhood125\Exceptions\VideoNotFoundException;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class Giffer
@@ -17,7 +17,7 @@ class Giffer
      * return string /tmp/path/to/gif
      */
     public static function intervalTimelapse($video) {
-        if(!file_exists($video)) throw new VideoNotFoundExeption;
+        if(!file_exists($video)) throw new VideoNotFoundException("File \"$video\" does not exist");
 
         $tmpDir = sys_get_temp_dir();
         $prefix = md5($video);
