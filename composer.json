@@ -1,0 +1,18 @@
+{
+    "name": "andrewhood125/giffer-php",
+    "description": "Create Gifs from Videos",
+    "type": "library",
+    "license": "MIT",
+    "authors": [{
+        "name": "Andrew Hood",
+        "email": "andrewhood125@gmail.com"
+    }],
+    "require": {
+        "symfony/process": "^3.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Andrewhood125\\": "src"
+        }
+    }
+}
