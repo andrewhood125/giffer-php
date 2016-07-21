@@ -30,7 +30,7 @@ class Giffer
         self::process("avconv -ss 80\% -i $video -vf fps=10 -vframes 25 $tmpDir/$prefix-4\%3d.jpg");
 
         // Create gif
-        self::process("convert -delay 10 $tmpDir/$prefix-* $tmpDir/$gifName");
+        self::process("convert -limit memory 256mb -delay 10 $tmpDir/$prefix-* $tmpDir/$gifName");
 
         // remove images
         self::process("rm $tmpDir/$prefix-*.jpg");
@@ -40,6 +40,7 @@ class Giffer
 
     private static function process($cmd) {
         $process = new Process($cmd);
+        $process->setTimeout(60*5); // video processing can take a while
         $process->run();
         if (!$process->isSuccessful()) {
                 throw new ProcessFailedException($process);
